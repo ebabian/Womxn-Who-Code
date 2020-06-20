@@ -8,6 +8,48 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
   </head>
   <body ng-controller="BlogController as ctrl">
+
     <h1>{{ctrl.title}}</h1>
+
+    <!-- create form -->
+    <form ng-submit="ctrl.createBlog()">
+      <h4>Blog Post</h4>
+      <input type="text" ng-model="ctrl.username" placeholder="Username"><br/>
+      <input type="text" ng-model="ctrl.img" placeholder="Image"><br/>
+      <textarea type="text" ng-model="ctrl.entry" placeholder="Entry"></textarea><br/>
+      <input id="create-submit" type="submit" value="Post">
+    </form>
+
+    <!-- blog post -->
+    <ul ng-repeat="post in ctrl.blog">
+      <li>
+
+        <h4>{{post.username}}</h4>
+
+        <!-- delete button -->
+        <img
+        id="edit-del-btn"
+        ng-click="ctrl.deleteBlog(post)"
+        src="https://img.icons8.com/material-outlined/96/000000/delete-forever.png"/>
+
+        <!-- edit button -->
+        <img
+          id="edit-del-btn"
+          ng-if="$index !== ctrl.indexOfEditFormToShow"
+          ng-click="ctrl.indexOfEditFormToShow = $index"
+          src="https://img.icons8.com/ios-glyphs/30/000000/edit.png"/>
+
+        <h5 id="date">{{post.date}}</h5><br/>
+        <p>{{post.entry}}</p><br/>
+      </li>
+      <!-- edit form -->
+      <form ng-submit="ctrl.editBlog(post)">
+        <li ng-if="$index === ctrl.indexOfEditFormToShow">
+        <input type="text" ng-model="ctrl.updatedEntry" placeholder="{{post.entry}}">
+        <input type="submit" value="Update Post"/>
+        </li>
+      </form>
+    </ul>
+
   </body>
 </html>

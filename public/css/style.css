@@ -1,0 +1,8 @@
+#edit-del-btn {
+  float: right;
+  width: 18px;
+  margin-right: 20px;
+}
+#edit-del-btn:hover{
+  cursor: pointer;
+}
