@@ -1,15 +1,18 @@
 const app = angular.module('BlogApp', [])
 
 app.controller = ('BlogController', ['$http', function($http){
-  this.createPost = {}
-  this.blogs = []
+  this.createPost = {
+    this.img = "",
+    this.username = "",
+    this.entry = ""
+  }
 
 
   this.createBlog = () => {
     $http(
       {
         method: 'POST',
-        url: '/blogs',
+        url: '/wmxn',
         data: this.createPost
       }
     ).then((response) => {
@@ -24,7 +27,7 @@ app.controller = ('BlogController', ['$http', function($http){
     $http(
       {
         method: 'GET',
-        url: '/blogs'
+        url: '/wmxn'
       }
     ).then((response) => {
       this.response = response.data
