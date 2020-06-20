@@ -1,6 +1,6 @@
 const app = angular.module('BlogApp', [])
 
-app.controller = ('BlogController', ['$http', function($http){
+app.controller('BlogController', ['$http', function($http){
     this.username = ""
     this.img = ""
     this.entry = ""
@@ -9,7 +9,17 @@ app.controller = ('BlogController', ['$http', function($http){
 
 //delete function
 this.deleteBlog = function() {
-
+  $http(
+    {
+      method: 'DELETE',
+      url: '/wmxn/' + blog._id
+    }
+  ).then((response) => {
+    console.log(response.data);
+    this.getBlog();
+  }, error => {
+    console.log(error);
+  })
 }
 
 //edit function
