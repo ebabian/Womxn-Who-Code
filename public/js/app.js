@@ -6,19 +6,24 @@ app.controller('BlogController', ['$http', function($http){
     this.entry = ""
     this.likes = 0 //Elektra will add a like function
     this.date = '' //Elektra will add a date function
+    this.title = 'Wmxn who code'
+    this.indexOfEditFormToShow = null;
+    this.updatedEntry = '';
+    const controller = this
 
 //delete function
-this.deleteBlog = function() {
+this.deleteBlog = function(blog) {
   $http(
     {
       method: 'DELETE',
       url: '/wmxn/' + blog._id
     }
-  ).then((response) => {
-    console.log(response.data);
-    this.getBlog();
-  }, error => {
-    console.log(error);
+  ).then(
+    function(response){
+      controller.getBlog();
+
+  }, function(error) {
+      console.log(error);
   })
 }
 
@@ -31,15 +36,19 @@ this.editBlog = function(blog){
       data: {
         entry: this.updatedEntry
       }
-    }).then((response) => {
-      this.getBlog()
-    }, (error) => {
+    }).then(
+      function(response) {
+        controller.getBlog()
+        console.log(response);
+
+    }, function(error) {
       console.log(error);
     })
+    this.indexOfEditFormToShow = null;
   }
 
-
-
+//
+//
 // create function
   this.createBlog = function() {
     $http(
@@ -51,7 +60,7 @@ this.editBlog = function(blog){
           img: this.img,
           entry: this.entry,
       }
-    ).then((response) => {
+    }).then((response) => {
       this.getBlog() // call get function
     }, (error) => {
       console.log(error);
@@ -70,16 +79,16 @@ this.editBlog = function(blog){
         method: 'GET',
         url: '/wmxn'
       }
-    ).then((response) => {
-      //this.blog is term we'll use to store the data
-      this.blog = response.data
-      console.log(this.blog);
-    }, error => {
+    ).then(
+      function(response) {
+      //blog is term we'll use to store the data
+      controller.blog = response.data
+      console.log(controller.blog);
+
+    }, function(error){
       console.log(error);
     })//.then ends
   }//getBlog ends
-
-
 
 
 // call get function on page load
