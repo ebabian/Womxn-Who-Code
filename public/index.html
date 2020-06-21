@@ -6,6 +6,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
     <script src="js/app.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
   <body ng-controller="BlogController as ctrl">
 
@@ -20,13 +22,23 @@
       <input id="create-submit" type="submit" value="Post">
     </form>
 
-    <!-- blog post -->
-    <ul ng-repeat="post in ctrl.blog">
-      <li>
+<!-- IDEA: Bootstrap container -->
+    <div ng-repeat="post in ctrl.blog">
 
-        <h4>{{post.username}}</h4>
 
-        <!-- delete button -->
+
+    <!-- IDEA: BOOTSTRAP CARD -->
+
+    <div class="card mb-3 ml-5 mt-5" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="{{post.img}}" class="card-img" alt="Post Image">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Username: {{post.username}}</h5>
+
+        <!-- Delete Button -->
         <img
         id="edit-del-btn"
         ng-click="ctrl.deleteBlog(post)"
@@ -40,16 +52,29 @@
           src="https://img.icons8.com/ios-glyphs/30/000000/edit.png"/>
 
         <h5 id="date">{{post.date}}</h5><br/>
-        <p>{{post.entry}}</p><br/>
-      </li>
-      <!-- edit form -->
-      <form ng-submit="ctrl.editBlog(post)">
-        <li ng-if="$index === ctrl.indexOfEditFormToShow">
-        <input type="text" ng-model="ctrl.updatedEntry" placeholder="{{post.entry}}">
-        <input type="submit" value="Update Post"/>
-        </li>
-      </form>
-    </ul>
+
+        <p class="card-text">{{post.entry}}</p>
+        <!-- edit form -->
+        <form ng-submit="ctrl.editBlog(post)">
+          <li ng-if="$index === ctrl.indexOfEditFormToShow">
+          <input type="text" ng-model="ctrl.updatedEntry" placeholder="{{post.entry}}">
+          <input type="submit" value="Update Post"/>
+          </div>
+        </form>
+        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IDEA: ENDS BOOTTRAP CARD -->
+
+<!-- IDEA: Ends bootstrap container -->
+  </div>
+
+
+
+
 
   </body>
 </html>
