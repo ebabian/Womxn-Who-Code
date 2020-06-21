@@ -2,54 +2,131 @@
 <html lang="en" dir="ltr" ng-app="BlogApp">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>WMXN</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
     <script src="js/app.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
   <body ng-controller="BlogController as ctrl">
+    <nav>
+      <ul class="nav nav-tabs justify-content-center">
+        <li class="nav-item"><a class="nav-link" href="#">HOME</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">ABOUT</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">CONTACT</a></li>
+      </ul>
+    </nav>
 
-    <h1>{{ctrl.title}}</h1>
+    <!-- START container styling -->
+    <div class="container mt-3">
+      <div class="sticky-top">
+        <h1>{{ctrl.title}}</h1>
+      </div>
 
-    <!-- create form -->
-    <form ng-submit="ctrl.createBlog()">
+
+
+    <!-- START CREATE FORM -->
+    <div class="visible">
+
+    </div>
+    <form class="mt-3" ng-submit="ctrl.createBlog()">
       <h4>Blog Post</h4>
-      <input type="text" ng-model="ctrl.username" placeholder="Username"><br/>
-      <input type="text" ng-model="ctrl.img" placeholder="Image"><br/>
-      <textarea type="text" ng-model="ctrl.entry" placeholder="Entry"></textarea><br/>
-      <input id="create-submit" type="submit" value="Post">
+      <input class="mt-3" type="text" ng-model="ctrl.username" placeholder="Username"><br/>
+      <input class="mt-3" type="text" ng-model="ctrl.img" placeholder="Image URL"><br/>
+
+
+      <div class="mb-3 mt-3">
+        <label for="validationTextarea">Say what you want!</label>
+        <textarea ng-model="ctrl.entry" class="form-control is-invalid" id="validationTextarea" placeholder="Write your message here" required></textarea>
+        <div class="invalid-feedback">
+          Please enter a message in the textarea.
+        </div>
+      </div>
+
+      <!-- <textarea type="text" ng-model="ctrl.entry" placeholder="Entry"></textarea><br/> -->
+
+        <button class="btn btn-outline-info" id="create-submit" type="submit" value="Post">Post</button>
+
+
     </form>
+    <!-- END CREATE FORM -->
 
-    <!-- blog post -->
-    <ul ng-repeat="post in ctrl.blog">
-      <li>
 
-        <h4>{{post.username}}</h4>
 
-        <!-- delete button -->
-        <img
-        id="edit-del-btn"
-        ng-click="ctrl.deleteBlog(post)"
-        src="https://img.icons8.com/material-outlined/96/000000/delete-forever.png"/>
+<!-- IDEA: Bootstrap container -->
+  <div ng-repeat="post in ctrl.blog">
+    <!-- IDEA: BOOTSTRAP CARD -->
 
-        <!-- edit button -->
-        <img
+<!-- START POST -->
+  <div class="card mb-3 ml-2 mt-5 bg-secondary text-white" style="max-width: 540px;">
+  <div class="row no-gutters">
+    <div class="col-md-4">
+      <img src="{{post.img}}" class="card-img" alt="Post Image">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Username: {{post.username}}</h5>
+
+        <p class="card-text">{{post.entry}}</p>
+
+
+
+
+        <!-- START edit form -->
+        <form ng-submit="ctrl.editBlog(post)">
+          <div class="form-group" ng-if="$index === ctrl.indexOfEditFormToShow">
+
+            <label for="entry">Edit Entry</label>
+            <input type="text" class="form-control" id="entry" ng-model="ctrl.updatedEntry" "{{post.entry}}">
+
+            <label for="img">Edit Image</label>
+            <input type="text" class="form-control" id="img" ng-model="ctrl.updatedImg" "{{post.img}}">
+
+            <button type="submit" class="btn btn-success mt-3">Update Post</button>
+
+            <button type="" ng-click="ctrl.indexOfEditFormToShow = !$index" class="btn btn-danger ml-3 mt-3">Cancel</button>
+
+          </div>
+          <!-- END Edit div -->
+        </form>
+        <!-- END Edit form -->
+
+
+
+
+        <p class="card-text">
+          <!-- Delete Button -->
+          <img
           id="edit-del-btn"
-          ng-if="$index !== ctrl.indexOfEditFormToShow"
-          ng-click="ctrl.indexOfEditFormToShow = $index"
-          src="https://img.icons8.com/ios-glyphs/30/000000/edit.png"/>
-        <img src="{{post.img}}">
-        <!-- <h5 id="date">{{post.date}}</h5><br/> -->
-        <p>{{post.entry}}</p><br/>
-      </li>
-      <!-- edit form -->
-      <form ng-submit="ctrl.editBlog(post)">
-        <li ng-if="$index === ctrl.indexOfEditFormToShow">
-        <input type="text" ng-model="ctrl.updatedEntry" placeholder="{{post.entry}}">
-        <input type="submit" value="Update Post"/>
-        </li>
-      </form>
-    </ul>
+          ng-click="ctrl.deleteBlog(post)"
+          src="https://img.icons8.com/material-outlined/96/000000/delete-forever.png"/>
+
+          <!-- edit button -->
+          <img
+            id="edit-del-btn"
+            ng-if="$index !== ctrl.indexOfEditFormToShow"
+            ng-click="ctrl.indexOfEditFormToShow = $index"
+            src="https://img.icons8.com/ios-glyphs/30/000000/edit.png"/>
+          <small class="text-muted" id="date">{{post.date}}</small>
+
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END POST -->
+</div>
+<!-- END Container div -->
+
+<!-- IDEA: ENDS BOOTTRAP CARD -->
+
+<!-- IDEA: Ends bootstrap container -->
+  </div>
+
+
+
+
 
   </body>
 </html>
