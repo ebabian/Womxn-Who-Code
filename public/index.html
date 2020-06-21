@@ -32,13 +32,12 @@
     </div>
     <form class="mt-3" ng-submit="ctrl.createBlog()">
       <h4>Blog Post</h4>
-      <input class="mt-3" type="text" ng-model="ctrl.username" placeholder="Username"><br/>
-      <input class="mt-3" type="text" ng-model="ctrl.img" placeholder="Image URL"><br/>
+      <input class="mt-3 input" type="text" ng-model="ctrl.username" placeholder="Username"><br/>
+      <input class="mt-3 input" type="text" ng-model="ctrl.img" placeholder="Image URL"><br/>
 
 
-      <div class="mb-3 mt-3">
-        <label for="validationTextarea">Say what you want!</label>
-        <textarea ng-model="ctrl.entry" class="form-control is-invalid" id="validationTextarea" placeholder="Write your message here" required></textarea>
+      <div class="mb-3 mt-3 entry">
+        <textarea ng-model="ctrl.entry" class="form-control input" id="validationTextarea" placeholder="Write your message here" required></textarea>
         <div class="invalid-feedback">
           Please enter a message in the textarea.
         </div>

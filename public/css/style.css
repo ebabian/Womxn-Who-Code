@@ -6,3 +6,9 @@
 #edit-del-btn:hover{
   cursor: pointer;
 }
+.entry {
+  margin-right: 500px;
+}
+.input {
+  font-size: 14px;
+}
