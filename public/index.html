@@ -69,6 +69,11 @@
 
         <p class="card-text">{{post.entry}}</p>
 
+        <!-- likes -->
+        <form ng-submit="ctrl.addLikes(post)">
+          <input type="hidden" ng-blog="ctrl.likes" value={{post.likes}}>
+          <input type="submit" name="blog-like" value="{{post.likes}} likes"/>
+        </form><br/>
 
 
 

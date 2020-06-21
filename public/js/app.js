@@ -4,12 +4,34 @@ app.controller('BlogController', ['$http', function($http){
     this.username = ""
     this.img = ""
     this.entry = ""
-    this.likes = 0 //Elektra will add a like function
+    this.likes = 0; //Elektra will add a like function
     this.date = '' //Elektra will add a date function
     this.title = 'Wmxn who code'
     this.indexOfEditFormToShow = null;
     this.updatedEntry = '';
     const controller = this
+
+//like button function
+this.addLikes = function(blog) {
+  $http(
+    {
+      method: 'PUT',
+      url: '/wmxn/' + blog._id,
+      data: {
+        likes: blog.likes += 1
+      }
+    }
+  ).then(
+    function(response){
+      // console.log(response);
+      controller.getBlog()
+    },
+    function(error){
+      console.log(error);
+    }
+  )
+}
+
 
 //delete function
 this.deleteBlog = function(blog) {
@@ -39,7 +61,7 @@ this.editBlog = function(blog){
     }).then(
       function(response) {
         controller.getBlog()
-        console.log(response);
+        // console.log(response);
 
     }, function(error) {
       console.log(error);
