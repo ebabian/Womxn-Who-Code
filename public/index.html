@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr" ng-app="BlogApp">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>WMXN</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.0/angular.min.js"></script>
     <script src="js/app.js"></script>
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -10,26 +10,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
   <body ng-controller="BlogController as ctrl">
+    <nav>
+      <ul class="nav nav-tabs justify-content-center">
+        <li class="nav-item"><a class="nav-link" href="#">HOME</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">ABOUT</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">CONTACT</a></li>
+      </ul>
+    </nav>
 
+    <!-- START container styling -->
+    <div class="container mt-3">
     <h1>{{ctrl.title}}</h1>
 
-    <!-- create form -->
-    <form ng-submit="ctrl.createBlog()">
+
+    <!-- START CREATE FORM -->
+    <form class="mt-3" ng-submit="ctrl.createBlog()">
       <h4>Blog Post</h4>
-      <input type="text" ng-model="ctrl.username" placeholder="Username"><br/>
-      <input type="text" ng-model="ctrl.img" placeholder="Image"><br/>
-      <textarea type="text" ng-model="ctrl.entry" placeholder="Entry"></textarea><br/>
+      <input class="mt-3" type="text" ng-model="ctrl.username" placeholder="Username"><br/>
+      <input class="mt-3" type="text" ng-model="ctrl.img" placeholder="Image URL"><br/>
+
+
+      <div class="mb-3 mt-3">
+        <label for="validationTextarea">Say what you want!</label>
+        <textarea ng-model="ctrl.entry" class="form-control is-invalid" id="validationTextarea" placeholder="Write your message here" required></textarea>
+        <div class="invalid-feedback">
+          Please enter a message in the textarea.
+        </div>
+      </div>
+
+      <!-- <textarea type="text" ng-model="ctrl.entry" placeholder="Entry"></textarea><br/> -->
       <input id="create-submit" type="submit" value="Post">
     </form>
+    <!-- END CREATE FORM -->
+
+
 
 <!-- IDEA: Bootstrap container -->
-    <div ng-repeat="post in ctrl.blog">
-
-
-
+  <div ng-repeat="post in ctrl.blog">
     <!-- IDEA: BOOTSTRAP CARD -->
 
-    <div class="card mb-3 ml-5 mt-5 bg-secondary text-white" style="max-width: 540px;">
+<!-- START POST -->
+  <div class="card mb-3 ml-2 mt-5 bg-secondary text-white" style="max-width: 540px;">
   <div class="row no-gutters">
     <div class="col-md-4">
       <img src="{{post.img}}" class="card-img" alt="Post Image">
@@ -39,9 +60,13 @@
         <h5 class="card-title">Username: {{post.username}}</h5>
 
         <p class="card-text">{{post.entry}}</p>
-        <!-- edit form -->
+
+
+
+
+        <!-- START edit form -->
         <form ng-submit="ctrl.editBlog(post)">
-          <div class="form-group" ng-if="$index ===     ctrl.indexOfEditFormToShow">
+          <div class="form-group" ng-if="$index === ctrl.indexOfEditFormToShow">
 
             <label for="entry">Edit Entry</label>
             <input type="text" class="form-control" id="entry" ng-model="ctrl.updatedEntry" "{{post.entry}}">
@@ -53,11 +78,13 @@
 
             <button type="" ng-click="ctrl.indexOfEditFormToShow = !$index" class="btn btn-primary mt-3">Cancel</button>
 
-
-
-
           </div>
+          <!-- END Edit div -->
         </form>
+        <!-- END Edit form -->
+
+
+
 
         <p class="card-text">
           <!-- Delete Button -->
@@ -79,6 +106,9 @@
     </div>
   </div>
 </div>
+<!-- END POST -->
+</div>
+<!-- END Container div -->
 
 <!-- IDEA: ENDS BOOTTRAP CARD -->
 
