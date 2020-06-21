@@ -9,29 +9,30 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   </head>
-  <body ng-controller="BlogController as ctrl">
+
+  <body class="body" ng-controller="BlogController as ctrl">
+
+    <!-- NAV bar -->
     <nav>
       <ul class="nav nav-tabs justify-content-center">
-        <li class="nav-item"><a class="nav-link" href="#">HOME</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">ABOUT</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">CONTACT</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Log Out</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
       </ul>
     </nav>
 
     <!-- START container styling -->
-    <div class="container mt-3">
-      <div class="sticky-top">
+    <div class="container">
+      <div class="sticky-top mt-5 mb-5">
         <h1>{{ctrl.title}}</h1>
       </div>
 
-
-
     <!-- START CREATE FORM -->
     <div class="visible">
-
     </div>
+
     <form class="mt-3" ng-submit="ctrl.createBlog()">
-      <h4>Blog Post</h4>
+      <h4 id="blog-header">Blog Post</h4>
       <input class="mt-3 input" type="text" ng-model="ctrl.username" placeholder="Username"><br/>
       <input class="mt-3 input" type="text" ng-model="ctrl.img" placeholder="Image URL"><br/>
 
@@ -72,10 +73,8 @@
         <!-- likes -->
         <form ng-submit="ctrl.addLikes(post)">
           <input type="hidden" ng-blog="ctrl.likes" value={{post.likes}}>
-          <input type="submit" name="blog-like" value="{{post.likes}} likes"/>
+          <input id="like-btn" type="submit" name="blog-like" value="{{post.likes}} likes"/>
         </form><br/>
-
-
 
         <!-- START edit form -->
         <form ng-submit="ctrl.editBlog(post)">
@@ -87,17 +86,14 @@
             <label for="img">Edit Image</label>
             <input type="text" class="form-control" id="img" ng-model="ctrl.updatedImg" "{{post.img}}">
 
-            <button type="submit" class="btn btn-success mt-3">Update Post</button>
+            <button type="submit" class="btn mt-3">Update Post</button>
 
-            <button type="" ng-click="ctrl.indexOfEditFormToShow = !$index" class="btn btn-danger ml-3 mt-3">Cancel</button>
+            <button type="" ng-click="ctrl.indexOfEditFormToShow = !$index" class="btn ml-3 mt-3">Cancel</button>
 
           </div>
           <!-- END Edit div -->
         </form>
         <!-- END Edit form -->
-
-
-
 
         <p class="card-text">
           <!-- Delete Button -->

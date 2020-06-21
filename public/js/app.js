@@ -6,13 +6,14 @@ app.controller('BlogController', ['$http', function($http){
     this.entry = ""
     this.likes = 0;
     this.date = '' //Elektra will add a date function
-    this.title = 'Wmxn who code'
+    this.title = 'Wmxn Who Code'
     this.indexOfEditFormToShow = null;
     this.updatedEntry = '';
     const controller = this
 
 //like button function
 this.addLikes = function(blog) {
+  this.likes = 0;
   $http(
     {
       method: 'PUT',
@@ -23,8 +24,9 @@ this.addLikes = function(blog) {
     }
   ).then(
     function(response){
-      // console.log(response);
+      console.log(response);
       controller.getBlog()
+
     },
     function(error){
       console.log(error);
@@ -81,6 +83,7 @@ this.editBlog = function(blog){
           username: this.username,
           img: this.img,
           entry: this.entry,
+          likes: this.likes,
           date: Date()
       }
     }).then((response) => {
@@ -110,7 +113,7 @@ this.editBlog = function(blog){
         }
       //blog is term we'll use to store the data
       controller.blog = response.data
-      // console.log(controller.blog);
+      console.log(controller.blog);
 
     }, function(error){
       console.log(error);

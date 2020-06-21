@@ -1,3 +1,16 @@
+@font-face {
+font-family: 'neue-pixel';
+src: url('NeueBit-Bold.otf') format('opentype');
+}
+@font-face {
+  font-family: 'neue-reg';
+  src: url('NeueMontreal-Regular.otf') format('opentype');
+
+}
+
+.body {
+  background-color:  #edffed;
+}
 #edit-del-btn {
   float: right;
   width: 18px;
@@ -11,4 +24,56 @@
 }
 .input {
   font-size: 14px;
+}
+nav {
+  background-color: #edffed;
+}
+nav a{
+  color:  #ff6100;
+}
+.nav-link:hover {
+color: black;
+}
+h1 {
+  font-family: 'neue-reg', Fallback, serif;
+  color:  black;
+  font-size: 90px;
+  letter-spacing: -1px;
+  text-align: center;
+}
+#like-btn {
+padding: 2px 8px;
+background-color: #282828;
+color: white;
+border: 1px solid #282828;
+border-radius: 2px;
+font-size: 12px;
+}
+#like-btn:hover {
+  background-color: #505050;
+  border: 1px solid #505050;
+  cursor: pointer;
+  outline: #505050;
+}
+#date{
+  font-size: 12px;
+  font-family: helvetica;
+  font-weight: 100;
+}
+#blog-header{
+  font-size: 18px;
+}
+#create-submit {
+  margin-top: 5px;
+  background-color: #282828;
+  color: white;
+  border: 1px solid #282828;
+  border-radius: 2px;
+  padding: 2px 12px;
+}
+#create-submit:hover{
+  background-color: #ff6100;
+  border: 1px solid #ff6100;
+  cursor: pointer;
+  outline: #ff6100;
 }
