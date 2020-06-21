@@ -77,3 +77,6 @@ font-size: 12px;
   cursor: pointer;
   outline: #ff6100;
 }
+.blog-card{
+  background-color: white;
+}

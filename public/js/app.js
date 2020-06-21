@@ -13,7 +13,6 @@ app.controller('BlogController', ['$http', function($http){
 
 //like button function
 this.addLikes = function(blog) {
-  this.likes = 0;
   $http(
     {
       method: 'PUT',
