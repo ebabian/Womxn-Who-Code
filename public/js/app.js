@@ -5,9 +5,11 @@ app.controller('BlogController', ['$http', function($http){
     this.img = ""
     this.entry = ""
     this.likes = 0;
+    this.comment = ""
     this.date = '' //Elektra will add a date function
-    this.title = 'Wmxn Who Code'
+    this.title = 'Womxn Who Code'
     this.indexOfEditFormToShow = null;
+    this.indexOfCommentFormToShow= null;
     this.updatedEntry = '';
     const controller = this
 
@@ -69,6 +71,27 @@ this.editBlog = function(blog){
     })
     this.indexOfEditFormToShow = null;
   }
+
+
+  //comment function
+  this.commentBlog = function(blog){
+    $http(
+      {
+        method: 'PUT',
+        url: '/wmxn/' + blog._id,
+        data: {
+          comment: this.comment
+        }
+      }).then(
+        function(response) {
+          controller.getBlog()
+          // console.log(response);
+
+      }, function(error) {
+        console.log(error);
+      })
+      this.indexOfCommentFormToShow = null;
+    }
 
 //
 //
