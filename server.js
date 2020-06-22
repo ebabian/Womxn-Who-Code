@@ -20,6 +20,8 @@ const MONGODB_URI = process.env.MONGODB_URI
 const wmxnController = require('./controllers/routes.js')
 app.use('/wmxn', wmxnController)
 
+const commentController = require('./controllers/comment-routes.js')
+app.use('/comment', commentController)
 
 mongoose.connect(
     MONGODB_URI,
