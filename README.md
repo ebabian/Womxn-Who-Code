@@ -1,6 +1,9 @@
 # project-three
 
 
+### Live link:
+
+
 *co-sign: Hannah Keith
 Jessica Teekasingh
 
@@ -49,5 +52,5 @@ Intialized app. Created controllers, routes, server.js, app.js, models, and bega
 
 
 
-### Unreseolved issues:
+### Unresolved issues:
 N/A
