@@ -11,7 +11,7 @@ app.use(express.static('public'))
 
 const db = mongoose.connection
 require('dotenv').config()
-const PORT = process.env.PORT || 3333
+const PORT = process.env.PORT || 8888
 const MONGODB_URI = process.env.MONGODB_URI
 
 // http://localhost:3000/wmxn
@@ -43,6 +43,8 @@ app.get('/', (req, res) => {
   res.send('Working!')
 })
 
-app.listen(3000, (req, res) => {
+console.log(PORT);
+
+app.listen(PORT, (req, res) => {
   console.log('listening...');
 })
