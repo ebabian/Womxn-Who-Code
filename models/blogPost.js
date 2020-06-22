@@ -4,7 +4,9 @@ const blogSchema = new mongoose.Schema(
   {
     username: String,
     img: String,
-    entry: String
+    entry: String,
+    likes: Number,
+    date: String
   }
 )
 
