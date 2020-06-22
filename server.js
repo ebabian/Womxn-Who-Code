@@ -16,6 +16,8 @@ app.use(express.static('public'))
 const wmxnController = require('./controllers/routes.js')
 app.use('/wmxn', wmxnController)
 
+const commentController = require('./controllers/comment-routes.js')
+app.use('/comment', commentController)
 
 mongoose.connect('mongodb://localhost:27017/wmxn',
 {
