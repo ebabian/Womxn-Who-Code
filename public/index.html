@@ -77,13 +77,13 @@
           <input id="like-btn" type="submit" name="blog-like" value="{{post.likes}} likes"/>
         </form><br/>
 
-        <!-- Comment Button --> <!-- IDEA: change this one -->
+        <!-- Comment Button -->
 
         <button type="button"
         ng-click="ctrl.indexOfCommentFormToShow = $index" ng-if="$index !== ctrl.indexOfCommentFormToShow" name="button">Leave Comment</button>
 
         <!-- Start Comment Form -->
-        <form ng-submit="ctrl.commentBlog(post)">
+        <form ng-submit="ctrl.commentBlog()">
           <div class="form-group" ng-if="$index === ctrl.indexOfCommentFormToShow">
 
             <input type="text" class="form-control" placeholder="Leave Comment">
@@ -130,6 +130,10 @@
           <small class="text-muted" id="date">{{post.date}}</small>
 
         </p>
+
+        <div class="comment-div">
+          {{ctrl.comment}}
+        </div>
       </div>
     </div>
   </div>

@@ -74,17 +74,17 @@ this.editBlog = function(blog){
 
 
   //comment function
-  this.commentBlog = function(blog){
+  this.commentBlog = function(){
     $http(
       {
-        method: 'PUT',
-        url: '/wmxn/' + blog._id,
+        method: 'POST',
+        url: '/comment',
         data: {
           comment: this.comment
         }
       }).then(
         function(response) {
-          controller.getBlog()
+          controller.getComments()
           // console.log(response);
 
       }, function(error) {
@@ -121,6 +121,27 @@ this.editBlog = function(blog){
   }//createBlog ends
 
 
+// get comments
+  this.getComments = function(){
+    $http(
+      {
+        method: 'GET',
+        url: '/comment'
+      }
+    ).then (
+      function(response) {
+        controller.comments= response.data
+        console.log(controller.comments);
+      },
+      function(error){
+        console.log(error);
+      }
+    )
+
+  }
+
+
+
   // get function
   this.getBlog = function() {
     $http(
@@ -135,6 +156,7 @@ this.editBlog = function(blog){
         }
       //blog is term we'll use to store the data
       controller.blog = response.data
+
       console.log(controller.blog);
 
     }, function(error){
