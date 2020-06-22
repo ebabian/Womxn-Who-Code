@@ -9,6 +9,10 @@ app.use(express.json());
 // public folder is static and public
 app.use(express.static('public'))
 
+const db = mongoose.connection
+require('dotenv').config()
+const PORT = process.env.PORT || 3333
+const MONGODB_URI = process.env.MONGODB_URI
 
 // http://localhost:3000/wmxn
 
@@ -17,11 +21,22 @@ const wmxnController = require('./controllers/routes.js')
 app.use('/wmxn', wmxnController)
 
 
-mongoose.connect('mongodb://localhost:27017/wmxn',
-{
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-});
+mongoose.connect(
+    MONGODB_URI,
+    {
+        useNewUrlParser:true,
+        useUnifiedTopology:true,
+        useFindAndModify:false,
+        useCreateIndex: true,
+    },
+    () => {
+        console.log('connected to mongoose');
+    }
+);
+
+db.on('error', err => console.log(err.message + ' is mongod not running?'))
+db.on('connected', () => console.log('mongo connected: ', MONGODB_URI))
+db.on('disconnected', () => console.log('mongo disconnected'))
 
 
 app.get('/', (req, res) => {

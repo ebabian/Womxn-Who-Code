@@ -37,8 +37,9 @@
       <input class="mt-3 input" type="text" ng-model="ctrl.img" placeholder="Image URL"><br/>
 
 
-      <div class="mb-3 mt-3 entry">
-        <textarea ng-model="ctrl.entry" class="form-control input" id="validationTextarea" placeholder="Write your message here" required></textarea>
+      <div class="mb-3 mt-3">
+        <label for="validationTextarea">Say what you want!</label>
+        <textarea ng-model="ctrl.entry" class="form-control" id="validationTextarea" placeholder="Write your message here" required></textarea>
         <div class="invalid-feedback">
           Please enter a message in the textarea.
         </div>
@@ -81,10 +82,10 @@
           <div class="form-group" ng-if="$index === ctrl.indexOfEditFormToShow">
 
             <label for="entry">Edit Entry</label>
-            <input type="text" class="form-control" id="entry" ng-model="ctrl.updatedEntry" "{{post.entry}}">
+            <input type="text" class="form-control" id="entry" ng-model="ctrl.updatedEntry" value="{{post.entry}}">
 
             <label for="img">Edit Image</label>
-            <input type="text" class="form-control" id="img" ng-model="ctrl.updatedImg" "{{post.img}}">
+            <input type="text" class="form-control" id="img" ng-model="ctrl.updatedImg" value="{{post.img}}">
 
             <button type="submit" class="btn mt-3">Update Post</button>
 
