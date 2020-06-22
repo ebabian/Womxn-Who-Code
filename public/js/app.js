@@ -5,9 +5,11 @@ app.controller('BlogController', ['$http', function($http){
     this.img = ""
     this.entry = ""
     this.likes = 0;
+    this.comment = ""
     this.date = '' //Elektra will add a date function
-    this.title = 'Wmxn Who Code'
+    this.title = 'Womxn Who Code'
     this.indexOfEditFormToShow = null;
+    this.indexOfCommentFormToShow= null;
     this.updatedEntry = '';
     const controller = this
 
@@ -70,6 +72,27 @@ this.editBlog = function(blog){
     this.indexOfEditFormToShow = null;
   }
 
+
+  //comment function
+  this.commentBlog = function(){
+    $http(
+      {
+        method: 'POST',
+        url: '/comment',
+        data: {
+          comment: this.comment
+        }
+      }).then(
+        function(response) {
+          controller.getComments()
+          // console.log(response);
+
+      }, function(error) {
+        console.log(error);
+      })
+      this.indexOfCommentFormToShow = null;
+    }
+
 //
 //
 // create function
@@ -98,6 +121,27 @@ this.editBlog = function(blog){
   }//createBlog ends
 
 
+// get comments
+  this.getComments = function(){
+    $http(
+      {
+        method: 'GET',
+        url: '/comment'
+      }
+    ).then (
+      function(response) {
+        controller.comments= response.data
+        console.log(controller.comments);
+      },
+      function(error){
+        console.log(error);
+      }
+    )
+
+  }
+
+
+
   // get function
   this.getBlog = function() {
     $http(
@@ -112,6 +156,7 @@ this.editBlog = function(blog){
         }
       //blog is term we'll use to store the data
       controller.blog = response.data
+
       console.log(controller.blog);
 
     }, function(error){
