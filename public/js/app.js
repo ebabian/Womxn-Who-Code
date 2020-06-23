@@ -9,7 +9,7 @@ app.controller('BlogController', ['$http', function($http){
     this.likes = 0;
     this.comment = ""
     this.date = '' //Elektra will add a date function
-    this.title = `Coder's Choice`
+    this.title = `Women Who Code`
     this.indexOfEditFormToShow = null;
     this.indexOfSEdditFormToShow = null;
     this.indexOfCreateFormToShow = null;
@@ -44,11 +44,12 @@ this.snippetLikes = function(snippet) {
 
 
 //delete blog function
-this.deleteSnippet = function(snippet) {
+this.deleteSnippet = function(post) {
+  console.log(post);
   $http(
     {
       method: 'DELETE',
-      url: '/snippet/' + snippet._id
+      url: '/snippet/' + post._id
     }
   ).then(
     function(response){
@@ -101,11 +102,13 @@ this.editSnippet = function(snippet){
     this.user = ''
     this.snippet = ''
     this.date = ''
+    console.log(this.snippet);
   }//createBlog ends
 
 
   // get blog function
   this.getSnippet = function() {
+    // console.log(this.snippet);
     $http(
       {
         method: 'GET',
@@ -113,13 +116,13 @@ this.editSnippet = function(snippet){
       }
     ).then(
       function(response) {
-        for(const blog in response.data){
-          response.data[blog].date = response.data[blog].date.replace(/\d\d:.*/, '')
+        for(const snippet in response.data){
+          response.data[snippet].date = response.data[snippet].date.replace(/\d\d:.*/, '')
         }
       //blog is term we'll use to store the data
-      controller.snippet = response.data
+        controller.post = response.data
 
-      // console.log(controller.snippet);
+      console.log(controller.post);
 
     }, function(error){
       console.log(error);
@@ -166,7 +169,7 @@ this.deleteBlog = function(blog) {
   ).then(
     function(response){
       controller.getBlog();
-
+      console.log(response);
   }, function(error) {
       console.log(error);
   })

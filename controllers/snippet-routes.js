@@ -18,7 +18,7 @@ router.post('/', (req, res) => {
 
 // Delete
 router.delete('/:id', (req, res) => {
-  Snippet.findByIdAndRemove(req.body, (error, deleteSnippet) => {
+  Snippet.findByIdAndRemove(req.params.id, (error, deleteSnippet) => {
     res.json(deleteSnippet)
   })
 })
