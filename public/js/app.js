@@ -101,7 +101,7 @@ this.editSnippet = function(snippet){
     this.user = ''
     this.snippet = ''
     this.date = ''
-    this.indexOfSnippetFormToShow = null;
+    // this.indexOfSnippetFormToShow = null;
   }//createBlog ends
 
 
@@ -218,7 +218,7 @@ this.editBlog = function(blog){
     this.entry = ''
     this.comment = ''
     this.date = ''
-    this.indexOfCreateFormToShow = null;
+    // this.indexOfCreateFormToShow = null;
   }//createBlog ends
 
 
