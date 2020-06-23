@@ -21,23 +21,7 @@
         </form><br/>
 
 
-        <!-- Comment Button -->
-        <button type="button"
-        ng-click="ctrl.indexOfCommentFormToShow = $index" ng-if="$index !== ctrl.indexOfCommentFormToShow" name="button">Leave Comment</button>
-<!--  -->
-        <!-- Start Comment Form -->
-        <form ng-submit="ctrl.createBlog()">
-          <div class="form-group" ng-if="$index === ctrl.indexOfCommentFormToShow">
 
-            <input type="text" class="form-control" ng-model="ctrl.comment" placeholder="Leave Comment">
-
-              <button type="submit" class="btn mt-3">Leave Comment</button>
-
-              <button type="" ng-click="ctrl.indexOfCommentFormToShow = !$index" class="btn ml-3 mt-3">Cancel</button>
-
-          </div>
-        </form>
-        <!-- <p>{{post.comment}}</p> -->
 
         <!-- START edit form -->
         <form ng-submit="ctrl.editBlog(post)">
