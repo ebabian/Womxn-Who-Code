@@ -2,16 +2,141 @@ const app = angular.module('BlogApp', [])
 
 app.controller('BlogController', ['$http', function($http){
     this.username = ""
+    this.user = ""
     this.img = ""
     this.entry = ""
+    this.snippet = ""
     this.likes = 0;
     this.comment = ""
     this.date = '' //Elektra will add a date function
-    this.title = 'Womxn Who Code'
+    this.title = `Women Who Code`
     this.indexOfEditFormToShow = null;
-    this.indexOfCommentFormToShow= null;
+    this.indexOfSEdditFormToShow = null;
+    this.indexOfCreateFormToShow = null;
+    this.indexOfSnippetFormToShow = null;
+    this.updatedSnippet = ''
     this.updatedEntry = '';
     const controller = this
+
+
+
+//==================================
+//        Snippet Functions       //
+//==================================
+this.snippetLikes = function(snippet) {
+  $http(
+    {
+      method: 'PUT',
+      url: '/snippet/' + snippet._id,
+      data: {
+        likes: snippet.likes += 1
+      }
+    }
+  ).then(
+    function(response){
+      console.log(response);
+      controller.getSnippet()
+
+    },
+    function(error){
+      console.log(error);
+    }
+  )
+}
+
+
+//delete blog function
+this.deleteSnippet = function(post) {
+  console.log(post);
+  $http(
+    {
+      method: 'DELETE',
+      url: '/snippet/' + post._id
+    }
+  ).then(
+    function(response){
+      controller.getSnippet();
+      console.log(response);
+
+  }, function(error) {
+      console.log(error);
+  })
+}
+
+//edit blog function
+this.editSnippet = function(snippet){
+  $http(
+    {
+      method: 'PUT',
+      url: '/snippet/' + snippet._id,
+      data: {
+        snippet: this.updatedSnippet
+      }
+    }).then(
+      function(response) {
+        controller.getSnippet()
+        // console.log(response);
+
+    }, function(error) {
+      console.log(error);
+    })
+    this.indexOfSEdditFormToShow = null;
+  }
+
+// create blog function
+  this.createSnippet = function() {
+    $http(
+      {
+        method: 'POST',
+        url: '/snippet',
+        data: {
+          user: this.user,
+          snippet: this.snippet,
+          likes: this.likes,
+          date: Date()
+      }
+    }).then((response) => {
+      this.getSnippet() // call get function
+    }, (error) => {
+      console.log(error);
+    })//.then ends
+    //this clears the input fields in create form
+    this.user = ''
+    this.snippet = ''
+    this.date = ''
+    console.log(this.snippet);
+  }//createBlog ends
+
+
+  // get blog function
+  this.getSnippet = function() {
+    // console.log(this.snippet);
+    $http(
+      {
+        method: 'GET',
+        url: '/snippet'
+      }
+    ).then(
+      function(response) {
+        for(const snippet in response.data){
+          response.data[snippet].date = response.data[snippet].date.replace(/\d\d:.*/, '')
+        }
+      //blog is term we'll use to store the data
+        controller.post = response.data
+
+      console.log(controller.post);
+
+    }, function(error){
+      console.log(error);
+    })//.then ends
+  }//getSnippet ends
+
+
+
+
+//==================================
+//          Blog functions        //
+//==================================
 
 //like button function
 this.addLikes = function(blog) {
@@ -36,7 +161,7 @@ this.addLikes = function(blog) {
 }
 
 
-//delete function
+//delete blog function
 this.deleteBlog = function(blog) {
   $http(
     {
@@ -46,13 +171,13 @@ this.deleteBlog = function(blog) {
   ).then(
     function(response){
       controller.getBlog();
-
+      console.log(response);
   }, function(error) {
       console.log(error);
   })
 }
 
-//edit function
+//edit blog function
 this.editBlog = function(blog){
   $http(
     {
@@ -72,30 +197,7 @@ this.editBlog = function(blog){
     this.indexOfEditFormToShow = null;
   }
 
-
-  //comment function
-  this.commentBlog = function(){
-    $http(
-      {
-        method: 'POST',
-        url: '/comment',
-        data: {
-          comment: this.comment
-        }
-      }).then(
-        function(response) {
-          controller.getComments()
-          // console.log(response);
-
-      }, function(error) {
-        console.log(error);
-      })
-      this.indexOfCommentFormToShow = null;
-    }
-
-//
-//
-// create function
+// create blog function
   this.createBlog = function() {
     $http(
       {
@@ -106,6 +208,7 @@ this.editBlog = function(blog){
           img: this.img,
           entry: this.entry,
           likes: this.likes,
+          comment: this.comment,
           date: Date()
       }
     }).then((response) => {
@@ -117,32 +220,13 @@ this.editBlog = function(blog){
     this.username = ''
     this.img = ''
     this.entry = ''
+    this.comment = ''
     this.date = ''
+    // this.indexOfCreateFormToShow = null;
   }//createBlog ends
 
 
-// get comments
-  this.getComments = function(){
-    $http(
-      {
-        method: 'GET',
-        url: '/comment'
-      }
-    ).then (
-      function(response) {
-        controller.comments= response.data
-        console.log(controller.comments);
-      },
-      function(error){
-        console.log(error);
-      }
-    )
-
-  }
-
-
-
-  // get function
+  // get blog function
   this.getBlog = function() {
     $http(
       {
@@ -167,5 +251,5 @@ this.editBlog = function(blog){
 
 // call get function on page load
 this.getBlog()
-
+this.getSnippet()
 }])

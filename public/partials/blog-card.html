@@ -1,0 +1,83 @@
+<!-- IDEA: Bootstrap container -->
+  <div ng-repeat="post in ctrl.blog">
+    <!-- IDEA: BOOTSTRAP CARD -->
+
+<!-- START POST -->
+  <div class="card mb-3 ml-2 mt-5 bg-secondary text-black" style="max-width: 540px;">
+  <div class="row no-gutters blog-card">
+    <div class="col-md-4">
+      <img src="{{post.img}}" class="card-img" alt="Post Image">
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">Username: {{post.username}}</h5>
+
+        <p class="card-text">{{post.entry}}</p>
+
+        <!-- likes -->
+        <form ng-submit="ctrl.addLikes(post)">
+          <input type="hidden" ng-blog="ctrl.likes" value={{post.likes}}>
+          <input id="like-btn" type="submit" name="blog-like" value="{{post.likes}} likes"/>
+        </form><br/>
+
+
+        <!-- Comment Button -->
+        <button type="button"
+        ng-click="ctrl.indexOfCommentFormToShow = $index" ng-if="$index !== ctrl.indexOfCommentFormToShow" name="button">Leave Comment</button>
+<!--  -->
+        <!-- Start Comment Form -->
+        <form ng-submit="ctrl.createBlog()">
+          <div class="form-group" ng-if="$index === ctrl.indexOfCommentFormToShow">
+
+            <input type="text" class="form-control" ng-model="ctrl.comment" placeholder="Leave Comment">
+
+              <button type="submit" class="btn mt-3">Leave Comment</button>
+
+              <button type="" ng-click="ctrl.indexOfCommentFormToShow = !$index" class="btn ml-3 mt-3">Cancel</button>
+
+          </div>
+        </form>
+        <!-- <p>{{post.comment}}</p> -->
+
+        <!-- START edit form -->
+        <form ng-submit="ctrl.editBlog(post)">
+          <div class="form-group" ng-if="$index === ctrl.indexOfEditFormToShow">
+
+            <label for="entry">Edit Entry</label>
+            <input type="text" class="form-control" id="entry" ng-model="ctrl.updatedEntry" value="{{post.entry}}">
+
+            <label for="img">Edit Image</label>
+            <input type="text" class="form-control" id="img" ng-model="ctrl.updatedImg" value="{{post.img}}">
+
+            <button id="edit-btn" type="submit" class="btn mt-3">Update Post</button>
+
+            <button id="edit-btn" type="" ng-click="ctrl.indexOfEditFormToShow = !$index" class="btn ml-3 mt-3">Cancel</button>
+
+          </div>
+          <!-- END Edit div -->
+        </form>
+        <!-- END Edit form -->
+
+        <p class="card-text">
+          <!-- Delete Button -->
+          <img
+          id="edit-del-btn"
+          ng-click="ctrl.deleteBlog(post)"
+          src="https://img.icons8.com/material-outlined/96/000000/delete-forever.png"/>
+
+          <!-- edit button -->
+          <img
+            id="edit-del-btn"
+            ng-if="$index !== ctrl.indexOfEditFormToShow"
+            ng-click="ctrl.indexOfEditFormToShow = $index"
+            src="https://img.icons8.com/ios-glyphs/30/000000/edit.png"/>
+          <small class="text-muted" id="date">{{post.date}}</small>
+
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Ends Post -->
+
+</div>

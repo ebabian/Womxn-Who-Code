@@ -12,144 +12,62 @@
 
   <body class="body" ng-controller="BlogController as ctrl">
 
-    <!-- NAV bar -->
-    <!-- <nav>
-      <ul class="nav nav-tabs justify-content-center">
-        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Log Out</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-      </ul>
-    </nav> -->
-
     <!-- START container styling -->
-    <div class="container">
+  <div class="container">
       <div class="sticky-top mt-5 mb-5">
         <h1>{{ctrl.title}}</h1>
       </div>
 
-    <!-- START CREATE FORM -->
-    <div class="visible">
+
+    <!-- Snippet Start -->
+    <div
+      class="snippet-createform"
+      ng-include="'partials/snippet-form.html'">
     </div>
-
-    <form class="mt-3" ng-submit="ctrl.createBlog()">
-      <h4 id="blog-header">Blog Post</h4>
-      <input class="mt-3 input" type="text" ng-model="ctrl.username" placeholder="Username"><br/>
-      <input class="mt-3 input" type="text" ng-model="ctrl.img" placeholder="Image URL"><br/>
+    <!-- END Snippet Form -->
 
 
-      <div class="mb-3 mt-3">
-        <label for="validationTextarea">Say what you want!</label>
-        <textarea ng-model="ctrl.entry" class="form-control" id="validationTextarea" placeholder="Write your message here" required></textarea>
-        <div class="invalid-feedback">
-          Please enter a message in the textarea.
-        </div>
-      </div>
-
-      <!-- <textarea type="text" ng-model="ctrl.entry" placeholder="Entry"></textarea><br/> -->
-
-        <button class="btn btn-outline-info" id="create-submit" type="submit" value="Post">Post</button>
-
-
-    </form>
-    <!-- END CREATE FORM -->
-
-
-
-<!-- IDEA: Bootstrap container -->
-  <div ng-repeat="post in ctrl.blog">
-    <!-- IDEA: BOOTSTRAP CARD -->
-
-<!-- START POST -->
-  <div class="card mb-3 ml-2 mt-5 bg-secondary text-black" style="max-width: 540px;">
-  <div class="row no-gutters blog-card">
-    <div class="col-md-4">
-      <img src="{{post.img}}" class="card-img" alt="Post Image">
+    <!-- START Create Blog Post Form -->
+    <div
+      class="blogPost-createform"
+      ng-include="'partials/blog-form.html'">
     </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">Username: {{post.username}}</h5>
+      <!-- END of Blog Create Form-->
 
-        <p class="card-text">{{post.entry}}</p>
 
-        <!-- likes -->
-        <form ng-submit="ctrl.addLikes(post)">
-          <input type="hidden" ng-blog="ctrl.likes" value={{post.likes}}>
-          <input id="like-btn" type="submit" name="blog-like" value="{{post.likes}} likes"/>
-        </form><br/>
-
-        <!-- Comment Button -->
-
-        <button type="button"
-        ng-click="ctrl.indexOfCommentFormToShow = $index" ng-if="$index !== ctrl.indexOfCommentFormToShow" name="button">Leave Comment</button>
-
-        <!-- Start Comment Form -->
-        <form ng-submit="ctrl.commentBlog()">
-          <div class="form-group" ng-if="$index === ctrl.indexOfCommentFormToShow">
-
-            <input type="text" class="form-control" placeholder="Leave Comment">
-
-              <button type="submit" class="btn mt-3">Leave Comment</button>
-
-              <button type="" ng-click="ctrl.indexOfCommentFormToShow = !$index" class="btn ml-3 mt-3">Cancel</button>
-
-          </div>
-        </form>
-
-        <!-- START edit form -->
-        <form ng-submit="ctrl.editBlog(post)">
-          <div class="form-group" ng-if="$index === ctrl.indexOfEditFormToShow">
-
-            <label for="entry">Edit Entry</label>
-            <input type="text" class="form-control" id="entry" ng-model="ctrl.updatedEntry" value="{{post.entry}}">
-
-            <label for="img">Edit Image</label>
-            <input type="text" class="form-control" id="img" ng-model="ctrl.updatedImg" value="{{post.img}}">
-
-            <button type="submit" class="btn mt-3">Update Post</button>
-
-            <button type="" ng-click="ctrl.indexOfEditFormToShow = !$index" class="btn ml-3 mt-3">Cancel</button>
-
-          </div>
-          <!-- END Edit div -->
-        </form>
-        <!-- END Edit form -->
-
-        <p class="card-text">
-          <!-- Delete Button -->
-          <img
-          id="edit-del-btn"
-          ng-click="ctrl.deleteBlog(post)"
-          src="https://img.icons8.com/material-outlined/96/000000/delete-forever.png"/>
-
-          <!-- edit button -->
-          <img
-            id="edit-del-btn"
-            ng-if="$index !== ctrl.indexOfEditFormToShow"
-            ng-click="ctrl.indexOfEditFormToShow = $index"
-            src="https://img.icons8.com/ios-glyphs/30/000000/edit.png"/>
-          <small class="text-muted" id="date">{{post.date}}</small>
-
-        </p>
-
-        <div class="comment-div">
-          {{ctrl.comment}}
-        </div>
-      </div>
+    <!-- Div for Blog Card -->
+    <div
+      class="blogPost-cardContainer"
+      ng-include="'partials/blog-card.html'">
     </div>
-  </div>
-</div>
-<!-- END POST -->
-</div>
-<!-- END Container div -->
-
-<!-- IDEA: ENDS BOOTTRAP CARD -->
-
-<!-- IDEA: Ends bootstrap container -->
-  </div>
+    <!--  End of Blog Card -->
 
 
 
+    <!-- snippet card div  -->
+    <div
+      class="snippet-cardDiv"
+      ng-include="'partials/snippet-card.html'">
+    </div>
+    <!-- End of Snippet card div -->
 
-
+  <!-- end of container div -->
+    </div>
   </body>
 </html>
+
+<!-- COMMENT DISPLAY CODE TEST -->
+<!-- <div class="comment-div">
+  <ul ng-repeat="addComm in ctrl.comments">
+    <li>
+      {{addComm.comment}}
+
+
+      <img
+      id="edit-del-btn"
+      ng-click="ctrl.deleteComment(addComm)"
+      src="https://img.icons8.com/material-outlined/96/000000/delete-forever.png"/>
+
+    </li>
+  </ul>
+</div> -->
