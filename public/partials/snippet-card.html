@@ -1,0 +1,42 @@
+<div class="card mt-3 ml-2" ng-repeat="code in ctrl.post" style="max-width: 540px;">
+  <div class="card-body">
+    <h5 class="card-title">User: {{code.user}}</h5>
+    <p class="card-text">{{code.snippet}}</p>
+
+    <!-- START edit snippet form -->
+    <form ng-submit="ctrl.editSnippet(code)">
+      <div class="form-group" ng-if="$index === ctrl.indexOfSEdditFormToShow">
+
+        <label for="entry">Edit Code</label>
+        <input type="text" class="form-control" id="entry" ng-model="ctrl.updatedSnippet" value="{{code.snippet}}">
+
+        <button type="submit" class="btn mt-3">Update Post</button>
+
+        <button type="" ng-click="ctrl.indexOfSEdditFormToShow = !$index" class="btn ml-3 mt-3">Cancel</button>
+
+      </div>
+      <!-- END Edit Snippet div -->
+    </form>
+    <!-- END Edit Snippet form -->
+
+    <!-- likes -->
+    <form ng-submit="ctrl.snippetLikes(code)">
+      <input type="hidden" ng-blog="ctrl.likes" value={{code.likes}}>
+      <input id="like-btn" type="submit" name="code-like" value="{{code.likes}} likes"/>
+    </form><br/>
+
+    <img
+    id="edit-del-btn"
+    ng-click="ctrl.deleteSnippet(code)"
+    src="https://img.icons8.com/material-outlined/96/000000/delete-forever.png"/>
+
+    <!-- edit snippet button -->
+    <img
+      id="edit-del-btn"
+      ng-if="$index !== ctrl.indexOfSEdditFormToShow"
+      ng-click="ctrl.indexOfSEdditFormToShow = $index"
+      src="https://img.icons8.com/ios-glyphs/30/000000/edit.png"/>
+
+    <p small class="text-muted" id="date">{{code.date}}</p>
+  </div>
+</div>
