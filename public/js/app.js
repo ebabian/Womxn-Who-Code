@@ -9,9 +9,9 @@ app.controller('BlogController', ['$http', function($http){
     this.likes = 0;
     this.comment = ""
     this.date = '' //Elektra will add a date function
-    this.title = 'Womxn Who Code'
+    this.title = `Coder's Choice`
     this.indexOfEditFormToShow = null;
-    // this.indexOfCommentFormToShow = null;
+    this.indexOfSEdditFormToShow = null;
     this.indexOfCreateFormToShow = null;
     this.indexOfSnippetFormToShow = null;
     this.updatedSnippet = ''
@@ -77,7 +77,7 @@ this.editSnippet = function(snippet){
     }, function(error) {
       console.log(error);
     })
-    this.indexOfSnippetFormToShow = null;
+    this.indexOfSEdditFormToShow = null;
   }
 
 // create blog function
@@ -101,7 +101,6 @@ this.editSnippet = function(snippet){
     this.user = ''
     this.snippet = ''
     this.date = ''
-    // this.indexOfSnippetFormToShow = null;
   }//createBlog ends
 
 

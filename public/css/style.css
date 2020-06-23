@@ -80,3 +80,7 @@ font-size: 12px;
 .blog-card{
   background-color: white;
 }
+#snippet-btn {
+  margin-left: 80px;
+  margin-top: 100px
+}
