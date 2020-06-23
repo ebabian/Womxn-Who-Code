@@ -13,6 +13,7 @@ app.controller('BlogController', ['$http', function($http){
     this.indexOfEditFormToShow = null;
     // this.indexOfCommentFormToShow = null;
     this.indexOfCreateFormToShow = null;
+    this.indexOfSnippetFormToShow = null;
     this.updatedSnippet = ''
     this.updatedEntry = '';
     const controller = this
@@ -76,7 +77,7 @@ this.editSnippet = function(snippet){
     }, function(error) {
       console.log(error);
     })
-    this.indexOfEditFormToShow = null;
+    this.indexOfSnippetFormToShow = null;
   }
 
 // create blog function
@@ -100,7 +101,7 @@ this.editSnippet = function(snippet){
     this.user = ''
     this.snippet = ''
     this.date = ''
-    this.indexOfCreateFormToShow = null;
+    this.indexOfSnippetFormToShow = null;
   }//createBlog ends
 
 
@@ -217,6 +218,7 @@ this.editBlog = function(blog){
     this.entry = ''
     this.comment = ''
     this.date = ''
+    this.indexOfCreateFormToShow = null;
   }//createBlog ends
 
 

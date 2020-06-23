@@ -53,6 +53,23 @@
 
 
 
+    <!-- Snippet Start -->
+    <button ng-click="ctrl.indexOfSnippetFormToShow = $index" ng-if="$index !== ctrl.indexOfSnippetFormToShow" type="button" name="button">Code Snippet</button>
+
+    <form class="mt-3" ng-submit="ctrl.createSnippet()">
+      <div class="form-group" ng-if="$index === ctrl.indexOfSnippetFormToShow">
+      <h4 id="blog-header">Snippet</h4>
+      <input class="mt-3 input" type="text" ng-model="ctrl.user" placeholder="Username"><br/>
+      <textarea name="name" rows="8" cols="80" class="mt-3 input" type="text" ng-model="ctrl.snippet" placeholder="Code Snippet"></textarea><br/>
+      <button class="btn btn-outline-info" id="create-submit" type="submit" value="Post">Post</button>
+      <button class="btn btn-outline-info" id="create-submit" ng-click="ctrl.indexOfSnippetFormToShow = !$index">Cancel</button>
+
+    </form>
+
+      <!-- END Snippet Form -->
+
+
+
 <!-- IDEA: Bootstrap container -->
   <div ng-repeat="post in ctrl.blog">
     <!-- IDEA: BOOTSTRAP CARD -->
@@ -141,13 +158,6 @@
 
 <!--  End bootstrap container -->
   </div>
-
-<!-- Snippet Start -->
-<form class="mt-3" ng-submit="ctrl.createSnippet()">
-  <h4 id="blog-header">Snippet</h4>
-  <input class="mt-3 input" type="text" ng-model="ctrl.user" placeholder="Username"><br/>
-  <textarea name="name" rows="8" cols="80" class="mt-3 input" type="text" ng-model="ctrl.snippet" placeholder="Code Snippet"></textarea><br/>
-  <button class="btn btn-outline-info" id="create-submit" type="submit" value="Post">Post</button>
 
 <!-- snippet card div  -->
 <div class="card w-50 mt-3 ml-3" ng-repeat="snippet in ctrl.snippet">
