@@ -19,57 +19,21 @@
       </div>
 
       <!-- Snippet Start -->
-      <div class="snippet-createform">
-      <button
-        id="snippet-btn"
-        ng-click="ctrl.indexOfSnippetFormToShow = $index"
-        ng-if="$index !== ctrl.indexOfSnippetFormToShow"
-        type="button"
-      >Code Snippet</button>
-
-      <form class="mt-3" ng-submit="ctrl.createSnippet()">
-        <div class="form-group" ng-if="$index === ctrl.indexOfSnippetFormToShow">
-        <h4 id="blog-header">Snippet</h4>
-        <input class="mt-3 input" type="text" ng-model="ctrl.user" placeholder="Username"><br/>
-
-        <textarea name="name" rows="8" cols="80" class="mt-3 input" type="text" ng-model="ctrl.snippet" placeholder="Code Snippet"></textarea><br/>
-
-        <button class="btn btn-outline-info" id="create-submit" type="submit" value="Post">Post</button>
-        <button class="btn btn-outline-info" id="create-submit" ng-click="ctrl.indexOfSnippetFormToShow = !$index">Cancel</button>
-        </div>
-      </form>
+      <div
+      class="snippet-createform"
+      ng-include="'partials/snippet-form.html'">
       </div>
-
-        <!-- END Snippet Form -->
+      <!-- END Snippet Form -->
 
 
 
 
     <!-- Start Create Blog Post Form -->
-    <button id="blogPostBtn" ng-click="ctrl.indexOfCreateFormToShow = $index" ng-if="$index !== ctrl.indexOfCreateFormToShow" type="button" name="button">Blog Post</button>
+    <div
+    class="blogPost-createform"
+    ng-include="'partials/blog-form.html'">
+    </div>
 
-    <form class="mt-3" ng-submit="ctrl.createBlog()">
-      <div class="form-group" ng-if="$index === ctrl.indexOfCreateFormToShow">
-
-      <h4 id="blog-header">Blog Post</h4>
-      <input class="mt-3 input" type="text" ng-model="ctrl.username" placeholder="Username"><br/>
-      <input class="mt-3 input" type="text" ng-model="ctrl.img" placeholder="Image URL"><br/>
-
-
-      <div class="mb-3 mt-3">
-        <label for="validationTextarea">Say what you want!</label>
-        <textarea ng-model="ctrl.entry" class="form-control" id="validationTextarea" placeholder="Write your message here" required></textarea>
-        <div class="invalid-feedback">
-          Please enter a message in the textarea.
-        </div>
-      </div>
-
-        <button class="btn btn-outline-info" id="create-submit" type="submit" value="Post">Post</button>
-
-        <button class="btn btn-outline-info" id="create-submit" ng-click="ctrl.indexOfCreateFormToShow = !$index">Cancel</button>
-
-      </div>
-    </form>
 
     <!-- END CREATE FORM -->
 
@@ -126,9 +90,9 @@
             <label for="img">Edit Image</label>
             <input type="text" class="form-control" id="img" ng-model="ctrl.updatedImg" value="{{post.img}}">
 
-            <button type="submit" class="btn mt-3">Update Post</button>
+            <button id="edit-btn" type="submit" class="btn mt-3">Update Post</button>
 
-            <button type="" ng-click="ctrl.indexOfEditFormToShow = !$index" class="btn ml-3 mt-3">Cancel</button>
+            <button id="edit-btn" type="" ng-click="ctrl.indexOfEditFormToShow = !$index" class="btn ml-3 mt-3">Cancel</button>
 
           </div>
           <!-- END Edit div -->
@@ -165,7 +129,7 @@
 
 
 <!-- snippet card div  -->
-<div class="card w-50 mt-3 ml-3" ng-repeat="code in ctrl.post">
+<div class="card mt-3 ml-2" ng-repeat="code in ctrl.post" style="max-width: 540px;">
   <div class="card-body">
     <h5 class="card-title">User: {{code.user}}</h5>
     <p class="card-text">{{code.snippet}}</p>

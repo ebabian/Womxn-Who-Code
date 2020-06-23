@@ -18,6 +18,8 @@ app.controller('BlogController', ['$http', function($http){
     this.updatedEntry = '';
     const controller = this
 
+
+
 //==================================
 //        Snippet Functions       //
 //==================================
