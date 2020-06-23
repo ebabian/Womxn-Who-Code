@@ -22,7 +22,13 @@
     <div class="visible">
     </div>
 
+
+    <!-- Start Create Blog Post Form -->
+    <button ng-click="ctrl.indexOfCreateFormToShow = $index" ng-if="$index !== ctrl.indexOfCreateFormToShow" type="button" name="button">Blog Post</button>
+
     <form class="mt-3" ng-submit="ctrl.createBlog()">
+      <div class="form-group" ng-if="$index === ctrl.indexOfCreateFormToShow">
+
       <h4 id="blog-header">Blog Post</h4>
       <input class="mt-3 input" type="text" ng-model="ctrl.username" placeholder="Username"><br/>
       <input class="mt-3 input" type="text" ng-model="ctrl.img" placeholder="Image URL"><br/>
@@ -36,12 +42,13 @@
         </div>
       </div>
 
-      <!-- <textarea type="text" ng-model="ctrl.entry" placeholder="Entry"></textarea><br/> -->
-
         <button class="btn btn-outline-info" id="create-submit" type="submit" value="Post">Post</button>
 
+        <button class="btn btn-outline-info" id="create-submit" ng-click="ctrl.indexOfCreateFormToShow = !$index">Cancel</button>
 
+      </div>
     </form>
+
     <!-- END CREATE FORM -->
 
 

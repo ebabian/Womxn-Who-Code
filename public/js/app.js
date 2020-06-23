@@ -11,7 +11,8 @@ app.controller('BlogController', ['$http', function($http){
     this.date = '' //Elektra will add a date function
     this.title = 'Womxn Who Code'
     this.indexOfEditFormToShow = null;
-    this.indexOfCommentFormToShow = null;
+    // this.indexOfCommentFormToShow = null;
+    this.indexOfCreateFormToShow = null;
     this.updatedSnippet = ''
     this.updatedEntry = '';
     const controller = this
@@ -51,6 +52,7 @@ this.deleteSnippet = function(snippet) {
   ).then(
     function(response){
       controller.getSnippet();
+      console.log(response);
 
   }, function(error) {
       console.log(error);
@@ -98,6 +100,7 @@ this.editSnippet = function(snippet){
     this.user = ''
     this.snippet = ''
     this.date = ''
+    this.indexOfCreateFormToShow = null;
   }//createBlog ends
 
 
@@ -116,7 +119,7 @@ this.editSnippet = function(snippet){
       //blog is term we'll use to store the data
       controller.snippet = response.data
 
-      console.log(controller.snippet);
+      // console.log(controller.snippet);
 
     }, function(error){
       console.log(error);
