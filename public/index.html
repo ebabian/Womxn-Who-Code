@@ -27,7 +27,7 @@
         type="button"
       >Code Snippet</button>
 
-      <form class="mt-3 ml-3" ng-submit="ctrl.createSnippet()">
+      <form class="mt-3" ng-submit="ctrl.createSnippet()">
         <div class="form-group" ng-if="$index === ctrl.indexOfSnippetFormToShow">
         <h4 id="blog-header">Snippet</h4>
         <input class="mt-3 input" type="text" ng-model="ctrl.user" placeholder="Username"><br/>
@@ -46,7 +46,7 @@
 
 
     <!-- Start Create Blog Post Form -->
-    <button ng-click="ctrl.indexOfCreateFormToShow = $index" ng-if="$index !== ctrl.indexOfCreateFormToShow" type="button" name="button">Blog Post</button>
+    <button id="blogPostBtn" ng-click="ctrl.indexOfCreateFormToShow = $index" ng-if="$index !== ctrl.indexOfCreateFormToShow" type="button" name="button">Blog Post</button>
 
     <form class="mt-3" ng-submit="ctrl.createBlog()">
       <div class="form-group" ng-if="$index === ctrl.indexOfCreateFormToShow">

@@ -56,9 +56,9 @@ font-size: 12px;
 }
 #create-submit {
   margin-top: 5px;
-  background-color: #282828;
+  background-color: #505050;
+  border: 1px solid #505050;
   color: white;
-  border: 1px solid #282828;
   border-radius: 2px;
   padding: 2px 12px;
 }
@@ -73,4 +73,12 @@ font-size: 12px;
 }
 .snippet-createform {
 
+}
+#blogPostBtn, #snippet-btn {
+  width: 120px;
+  font-size: 15px;
+  background-color: #282828;
+  color: white;
+  border: 1px solid #282828;
+  border-radius: 2px;
 }
