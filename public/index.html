@@ -12,15 +12,6 @@
 
   <body class="body" ng-controller="BlogController as ctrl">
 
-    <!-- NAV bar -->
-    <!-- <nav>
-      <ul class="nav nav-tabs justify-content-center">
-        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">Log Out</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">About</a></li>
-      </ul>
-    </nav> -->
-
     <!-- START container styling -->
     <div class="container">
       <div class="sticky-top mt-5 mb-5">
@@ -77,16 +68,16 @@
           <input id="like-btn" type="submit" name="blog-like" value="{{post.likes}} likes"/>
         </form><br/>
 
-        <!-- Comment Button -->
 
+        <!-- Comment Button -->
         <button type="button"
         ng-click="ctrl.indexOfCommentFormToShow = $index" ng-if="$index !== ctrl.indexOfCommentFormToShow" name="button">Leave Comment</button>
-
+<!--  -->
         <!-- Start Comment Form -->
-        <form ng-submit="ctrl.commentBlog()">
+        <form ng-submit="ctrl.createBlog()">
           <div class="form-group" ng-if="$index === ctrl.indexOfCommentFormToShow">
 
-            <input type="text" class="form-control" placeholder="Leave Comment">
+            <input type="text" class="form-control" ng-model="ctrl.comment" placeholder="Leave Comment">
 
               <button type="submit" class="btn mt-3">Leave Comment</button>
 
@@ -94,6 +85,7 @@
 
           </div>
         </form>
+        <!-- <p>{{post.comment}}</p> -->
 
         <!-- START edit form -->
         <form ng-submit="ctrl.editBlog(post)">
@@ -130,26 +122,69 @@
           <small class="text-muted" id="date">{{post.date}}</small>
 
         </p>
-
-        <div class="comment-div">
-          {{ctrl.comment}}
-        </div>
       </div>
     </div>
   </div>
 </div>
-<!-- END POST -->
+<!-- Ends Post -->
 </div>
-<!-- END Container div -->
+<!-- Ends Container div -->
 
-<!-- IDEA: ENDS BOOTTRAP CARD -->
+<!--  Ends Bootstrap Card -->
 
-<!-- IDEA: Ends bootstrap container -->
+<!--  End bootstrap container -->
   </div>
 
+<!-- Snippet Start -->
+<form class="mt-3" ng-submit="ctrl.createSnippet()">
+  <h4 id="blog-header">Snippet</h4>
+  <input class="mt-3 input" type="text" ng-model="ctrl.user" placeholder="Username"><br/>
+  <textarea name="name" rows="8" cols="80" class="mt-3 input" type="text" ng-model="ctrl.snippet" placeholder="Code Snippet"></textarea><br/>
+  <button class="btn btn-outline-info" id="create-submit" type="submit" value="Post">Post</button>
 
+<!-- snippet card div  -->
+<div class="card w-50 mt-3 ml-3" ng-repeat="snippet in ctrl.snippet">
+  <div class="card-body">
+    <h5 class="card-title">User: {{snippet.user}}</h5>
+    <p class="card-text">{{snippet.snippet}}</p>
 
+    <img
+    id="edit-del-btn"
+    ng-click="ctrl.deleteSnippet(snippet)"
+    src="https://img.icons8.com/material-outlined/96/000000/delete-forever.png"/>
 
+    <!-- edit button -->
+    <!-- <img
+      id="edit-del-btn"
+      ng-if="$index !== ctrl.indexOfEditFormToShow"
+      ng-click="ctrl.indexOfEditFormToShow = $index"
+      src="https://img.icons8.com/ios-glyphs/30/000000/edit.png"/> -->
+
+    <p small class="text-muted" id="date">{{snippet.date}}</p>
+
+    <!-- likes -->
+    <form ng-submit="ctrl.snippetLikes(snippet)">
+      <input type="hidden" ng-blog="ctrl.likes" value={{snippet.likes}}>
+      <input id="like-btn" type="submit" name="snippet-like" value="{{snippet.likes}} likes"/>
+    </form><br/>
+  </div>
+</div>
 
   </body>
 </html>
+
+<!-- COMMENT DISPLAY CODE TEST -->
+<!-- <div class="comment-div">
+  <ul ng-repeat="addComm in ctrl.comments">
+    <li>
+      {{addComm.comment}}
+
+
+      <img
+      id="edit-del-btn"
+      ng-click="ctrl.deleteComment(addComm)"
+      src="https://img.icons8.com/material-outlined/96/000000/delete-forever.png"/>
+
+    </li>
+  </ul>
+</div> -->
