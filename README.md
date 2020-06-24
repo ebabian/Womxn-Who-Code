@@ -1,14 +1,13 @@
-# project-three
+# Project Three: Womxn Who Code
 
 
-### Live link:
+### Live link: https://polar-bayou-58001.herokuapp.com/
 
 
-*co-sign: Hannah Keith
-Jessica Teekasingh
+*co-sign: Hannah Keith, Jessica Teekasingh, and Elektra Babian
 
 
-### Technologies Used:
+### Programs Used:
 * JavaScript  
 * CSS  
 * HTML  
@@ -21,26 +20,17 @@ Jessica Teekasingh
 * Github
 
 
-
 ## Purpose:
-Overall App -
+Overall App:
 A safe space for women software engineers to come together and freely share their code snippets, experience thus far, any struggles and wins, and other lifestyle adjustments that have arisen through becoming a developer!
 
-Models -
-Two models have been created.
-The ```Blogpost``` model is necessary for the inital post the user can create. This will include / display, the username, an image, and a description box for the featured text of the post.
-
-The ```secondModel``` is ...//(leaving this blank for now! -JT)
+Models:
+#1 The first model is a standard blog post and its functionality is for the user to input a username, image, and a description box for the featured text of the post.
+#2 The second model is specific for code blog posts. The user can add a username and a code snippet.
 
 
-
-### Approach:
-Day 1 -
-Brainstormed on idea and agreed upon concepts. Created work-flow schedule and setup Trello to-do list.
-
-Day 2 -
-Intialized app. Created controllers, routes, server.js, app.js, models, and began index.html.
-
+### Approach & Team Best Practices :
+Every at 10am our team met to discuss responsibilities for each team member, the progress of the project, challenges we faced, and project goals. Throughout the day each team member was available on slack in case another team member needed support/help debugging. If the project plan needed to be restructured it was discussed with the whole team before executing major changes.
 
 
 ### Installation instructions:
@@ -49,8 +39,3 @@ Intialized app. Created controllers, routes, server.js, app.js, models, and bega
 * run ```nodemon```  
 * Open second terminal tab and run ```mongod --dbpath ~/data/db```  
 * Open third terminal tab and run ```mongod```
-
-
-
-### Unresolved issues:
-N/A
