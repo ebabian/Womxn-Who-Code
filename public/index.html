@@ -47,7 +47,7 @@
 
     <!-- Div for Blog Card -->
     <div
-      class="blogPost-cardContainer"
+      class="blogPost-cardContainer" style="width: 28em;margin:0 auto;"
       ng-include="'partials/blog-card.html'">
     </div>
     <!--  End of Blog Card -->
@@ -56,28 +56,22 @@
 
     <!-- snippet card div  -->
     <div
-      class="snippet-cardDiv"
+      class="snippet-cardDiv" style="width: 28em;margin:0 auto; "
       ng-include="'partials/snippet-card.html'">
     </div>
     <!-- End of Snippet card div -->
+
+
+<footer>
+
+<h5 class="muted jumbotron mt-5">Created By: Elektra Babian, Hannah Keith, & Jessi Teekasingh @GA 2020</h5>
+
+</footer>
+
+
+
 
   <!-- end of container div -->
     </div>
   </body>
 </html>
-
-<!-- COMMENT DISPLAY CODE TEST -->
-<!-- <div class="comment-div">
-  <ul ng-repeat="addComm in ctrl.comments">
-    <li>
-      {{addComm.comment}}
-
-
-      <img
-      id="edit-del-btn"
-      ng-click="ctrl.deleteComment(addComm)"
-      src="https://img.icons8.com/material-outlined/96/000000/delete-forever.png"/>
-
-    </li>
-  </ul>
-</div> -->
