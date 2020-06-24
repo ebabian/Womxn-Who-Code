@@ -1,12 +1,4 @@
-@font-face {
-font-family: 'neue-pixel';
-src: url('NeueBit-Bold.otf') format('opentype');
-}
-@font-face {
-  font-family: 'neue-reg';
-  src: url('NeueMontreal-Regular.otf') format('opentype');
 
-}
 
 .body {
   background-color:  #edffed;
@@ -25,11 +17,17 @@ src: url('NeueBit-Bold.otf') format('opentype');
 .input {
   font-size: 14px;
 }
-h1 {
-  font-family: 'neue-reg', Fallback, serif;
+h1, h2, .jumbotron {
+  font-family: 'MuseoModerno', cursive;, Fallback, serif;
   color:  #ff6100;
   font-size: 90px;
   letter-spacing: -1px;
+  text-align: center;
+}
+.jumbotron {
+  font-family: 'MuseoModerno', cursive;, Fallback, serif;
+  color:  #ff6100;
+  font-size: 30px;
   text-align: center;
 }
 #like-btn {
@@ -75,12 +73,13 @@ font-size: 12px;
 
 }
 #blogPostBtn, #snippet-btn {
-  width: 120px;
+  width: 200px;
   font-size: 15px;
   background-color: #282828;
   color: white;
   border: 1px solid #282828;
   border-radius: 2px;
+  margin-left: 40%
 }
 .btn {
   background-color: #505050;

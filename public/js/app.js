@@ -9,7 +9,7 @@ app.controller('BlogController', ['$http', function($http){
     this.likes = 0;
     this.comment = ""
     this.date = '' //Elektra will add a date function
-    this.title = `Women Who Code`
+    this.title = `Womxn Who Code`
     this.indexOfEditFormToShow = null;
     this.indexOfSEdditFormToShow = null;
     this.indexOfCreateFormToShow = null;
